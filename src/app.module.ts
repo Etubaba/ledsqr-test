@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { KnexModule } from 'nest-knexjs';
 import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { WalletModule } from './modules/wallet/wallet.module';
 
 @Module({
   imports: [
@@ -12,14 +14,16 @@ import { UsersModule } from './modules/users/users.module';
         version: '5.7',
         useNullAsDefault: true,
         connection: {
-          host: '3306',
-          user: 'etubaba',
-          password: 'mun2la@@',
-          database: 'lendsqr',
+          host: process.env.DB_HOST,
+          user: process.env.DB_USER,
+          password: process.env.DB_PASSWORD,
+          database: process.env.DB_DATABASE,
         },
       },
     }),
     UsersModule,
+    AuthModule,
+    WalletModule,
   ],
   controllers: [AppController],
   providers: [AppService],
