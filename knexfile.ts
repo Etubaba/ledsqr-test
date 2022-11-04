@@ -5,9 +5,9 @@
  */
 module.exports = {
   development: {
-    client: 'mysql2',
+    client: 'mysql',
     connection: {
-      host: '3306',
+      host: '127.0.0.1',
       user: 'etubaba',
       password: 'mun2la@@',
       database: 'lendsqr',
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   production: {
-    client: 'mysql2',
+    client: 'mysql',
     connection: {
       database: 'my_db',
       user: 'username',

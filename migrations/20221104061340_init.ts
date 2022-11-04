@@ -6,6 +6,7 @@ export async function up(knex: Knex): Promise<void> {
       table.increments('id').primary();
       table.string('email').notNullable().unique();
       table.string('password').notNullable();
+      table.string('token').nullable();
       table.integer('wallet_balance').defaultTo(0);
       table.timestamps(true, true);
     })
@@ -13,7 +14,7 @@ export async function up(knex: Knex): Promise<void> {
     .createTable('wallets', (table) => {
       table.increments('id').primary();
       table.string('user_email').notNullable;
-      table.integer('balance').defaultTo(0);
+      table.integer('amount').defaultTo(0);
       table.timestamps(true, true);
     });
 }

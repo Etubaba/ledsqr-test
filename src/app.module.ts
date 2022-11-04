@@ -5,13 +5,18 @@ import { KnexModule } from 'nest-knexjs';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { WalletModule } from './modules/wallet/wallet.module';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+// require('dotenv').config();
 
 @Module({
   imports: [
     KnexModule.forRoot({
       config: {
-        client: 'mysql2',
-        version: '5.7',
+        client: 'mysql',
+        // version: '5.7',
         useNullAsDefault: true,
         connection: {
           host: process.env.DB_HOST,
