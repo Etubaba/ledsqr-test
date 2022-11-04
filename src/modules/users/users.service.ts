@@ -1,7 +1,7 @@
 import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { Knex } from 'knex';
 import { InjectModel } from 'nest-knexjs';
-import { NewUser } from './dto/createUser.dto';
+import { UserDto } from './dto/createUser.dto';
 import * as argon2 from 'argon2';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class UsersService {
   constructor(@InjectModel() private readonly knex: Knex) {}
 
   //service to register new user (task 1)
-  async createUser(user: NewUser) {
+  async createUser(user: UserDto) {
     const { email, password } = user;
 
     //check if email already exisit
@@ -29,11 +29,7 @@ export class UsersService {
 
   //get all user
   async getAllUsers() {
-    const user = await this.knex('users').select(
-      'id',
-      'email',
-      'wallet_balance',
-    );
+    const user = await this.knex('users').select();
     return {
       status: true,
       data: user,
