@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserDto } from '../users/dto/createUser.dto';
+import { TransferFundDto } from './dto/transfer.dto';
 import { WalletDto } from './dto/wallet.dto';
 import { WalletService } from './wallet.service';
 
@@ -16,8 +17,12 @@ export class WalletController {
   async fundUserWallet(@Body() walletDto: WalletDto) {
     return await this.walletService.fundUserWallet(walletDto);
   }
+  @Post('/transfer/fund')
+  async transferFund(@Body() transferDto: TransferFundDto) {
+    return await this.walletService.transferFund(transferDto);
+  }
 
-  @Get()
+  @Get('/all')
   async getAllWallet() {
     return await this.walletService.getAllWallet();
   }
