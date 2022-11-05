@@ -21,6 +21,10 @@ export class WalletController {
   async transferFund(@Body() transferDto: TransferFundDto) {
     return await this.walletService.transferFund(transferDto);
   }
+  @Post('/withdrawer')
+  async fundWithdrawer(@Body() walletDto: WalletDto) {
+    return await this.walletService.withdrawFromWallet(walletDto);
+  }
 
   @Get('/all')
   async getAllWallet() {

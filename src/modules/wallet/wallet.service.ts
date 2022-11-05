@@ -186,7 +186,64 @@ export class WalletService {
     // }
   }
 
-  //withdraw from wallet balance
+  //withdraw from wallet balance(task 4)
+  async withdrawFromWallet(walletDto: WalletDto) {
+    // try {
+    const { user_email, amount, wallet_number } = walletDto;
+    const userWallet =
+      user_email !== undefined
+        ? await this.knex('wallets').where({ user_email }).first()
+        : await this.knex('wallets').where({ wallet_number }).first();
+
+    //if user wallet does not exist
+    if (!userWallet) {
+      throw new NotFoundException('User not found');
+    }
+
+    //check if wallet balance is sufficient for the transaction
+    if (userWallet.amount < amount) {
+      throw new NotAcceptableException('Insufficient fund');
+    }
+
+    //withdraw from user wallet
+    if (user_email !== undefined) {
+      await this.knex('wallets')
+        .where({ user_email })
+        .update({
+          amount: userWallet.amount - amount,
+        });
+    } else {
+      await this.knex('wallets')
+        .where({ wallet_number })
+        .update({
+          amount: userWallet.amount - amount,
+        });
+    }
+
+    //where wallet number is used, get user email from wallet
+    if (user_email === undefined) {
+      const userEmail = await this.knex('wallets')
+        .where({ wallet_number })
+        .first();
+
+      await this.knex('users')
+        .where('email', userEmail.user_email)
+        .update({
+          wallet_balance: userWallet.amount - amount,
+        });
+    } else {
+      await this.knex('users')
+        .where('email', user_email)
+        .update({
+          wallet_balance: userWallet.amount - amount,
+        });
+    }
+
+    return { status: true, msg: `Withdraw completed successfully` };
+    // } catch (err: any) {
+    //   console.log(err.message);
+    // }
+  }
 
   async getWalletBalance(wallet_id: string | number) {
     const userWalletBalance = await this.knex('wallets')
