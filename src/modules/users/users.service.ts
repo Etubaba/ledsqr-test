@@ -23,6 +23,15 @@ export class UsersService {
     const hashedPassword = await argon2.hash(password);
     //create user
     await this.knex('users').insert({ email, password: hashedPassword });
+    //create wallet for user
+
+    const randomNum = Math.floor(100000 + Math.random() * 900000);
+
+    await this.knex('wallets').insert({
+      user_email: email,
+      amount: 0,
+      wallet_number: randomNum,
+    });
 
     return { status: true, msg: 'User created successfully' };
   }

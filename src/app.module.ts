@@ -6,10 +6,9 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { WalletModule } from './modules/wallet/wallet.module';
 import * as dotenv from 'dotenv';
+import { WalletService } from './modules/wallet/wallet.service';
 
 dotenv.config();
-
-// require('dotenv').config();
 
 @Module({
   imports: [
