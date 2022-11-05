@@ -1,4 +1,5 @@
 import { IsString, IsNotEmpty, IsEmail } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class UserDto {
   @IsString()
@@ -8,5 +9,6 @@ export class UserDto {
 
   @IsString()
   @IsNotEmpty()
+  @Transform(({ value }) => String(value))
   password: string;
 }

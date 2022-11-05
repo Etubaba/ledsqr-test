@@ -7,6 +7,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { WalletModule } from './modules/wallet/wallet.module';
 import * as dotenv from 'dotenv';
 import { WalletService } from './modules/wallet/wallet.service';
+import { TransactionModule } from './modules/transaction/transaction.module';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ dotenv.config();
     UsersModule,
     AuthModule,
     WalletModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -14,56 +14,60 @@ export class WalletService {
 
   //service to fund wallet for user (task 2)
   async fundUserWallet(walletDto: WalletDto) {
-    try {
-      const { user_email, amount, wallet_number } = walletDto;
-      const userWallet =
-        user_email !== undefined
-          ? await this.knex('wallets').where({ user_email }).first()
-          : await this.knex('wallets').where({ wallet_number }).first();
+    const { user_email, amount, wallet_number } = walletDto;
+    const userWallet =
+      user_email !== undefined
+        ? await this.knex('wallets').where({ user_email }).first()
+        : await this.knex('wallets').where({ wallet_number }).first();
 
-      //if user wallet exist exist
-      if (!userWallet) {
-        throw new NotFoundException('User not found');
-      }
-
-      //fund user wallet
-      if (user_email !== undefined) {
-        await this.knex('wallets')
-          .where({ user_email })
-          .update({
-            amount: amount + userWallet.amount,
-          });
-      } else {
-        await this.knex('wallets')
-          .where({ wallet_number })
-          .update({
-            amount: amount + userWallet.amount,
-          });
-      }
-
-      //where wallet number is used, get user email from wallet
-      if (user_email === undefined) {
-        const userEmail = await this.knex('wallets')
-          .where({ wallet_number })
-          .first();
-
-        await this.knex('users')
-          .where('email', userEmail.user_email)
-          .update({
-            wallet_balance: amount + userWallet.amount,
-          });
-      } else {
-        await this.knex('users')
-          .where('email', user_email)
-          .update({
-            wallet_balance: amount + userWallet.amount,
-          });
-      }
-
-      return { status: true, msg: `User wallet funded successfull` };
-    } catch (err: any) {
-      console.log(err.message);
+    //if user wallet exist exist
+    if (!userWallet) {
+      throw new NotFoundException('User not found');
     }
+
+    //fund user wallet
+    if (user_email !== undefined) {
+      await this.knex('wallets')
+        .where({ user_email })
+        .update({
+          amount: amount + userWallet.amount,
+        });
+    } else {
+      await this.knex('wallets')
+        .where({ wallet_number })
+        .update({
+          amount: amount + userWallet.amount,
+        });
+    }
+
+    //where wallet number is used, get user email from wallet
+    if (user_email === undefined) {
+      const userEmail = await this.knex('wallets')
+        .where({ wallet_number })
+        .first();
+
+      await this.knex('users')
+        .where('email', userEmail.user_email)
+        .update({
+          wallet_balance: amount + userWallet.amount,
+        });
+    } else {
+      await this.knex('users')
+        .where('email', user_email)
+        .update({
+          wallet_balance: amount + userWallet.amount,
+        });
+    }
+
+    //transaction history
+    const senderId = user_email !== undefined ? user_email : wallet_number;
+    await this.knex('transactions').insert({
+      action: 'Fund wallet balance',
+      sender: senderId,
+      amount: amount,
+    });
+
+    return { status: true, msg: `User wallet funded successfull` };
   }
 
   //transfer fund from user balance (task 3)
@@ -180,10 +184,19 @@ export class WalletService {
         ? `Fund transfered to ${receiver_email} successfully`
         : `Fund transfered to wallet with id:${receiver_wallet_number} successfully`;
 
+    //transaction history
+    const senderId =
+      sender_email !== undefined ? sender_email : sender_wallet_number;
+    const receiverId =
+      receiver_email !== undefined ? receiver_email : receiver_wallet_number;
+    await this.knex('transactions').insert({
+      action: 'Transfer funds',
+      sender: senderId,
+      amount: amount,
+      receiver: receiverId,
+    });
+
     return { status: true, msg: message };
-    // } catch (err: any) {
-    //   console.log(err.message);
-    // }
   }
 
   //withdraw from wallet balance(task 4)
@@ -238,6 +251,14 @@ export class WalletService {
           wallet_balance: userWallet.amount - amount,
         });
     }
+
+    //transaction history
+    const senderId = user_email !== undefined ? user_email : wallet_number;
+    await this.knex('transactions').insert({
+      action: 'Withdraw funds',
+      sender: senderId,
+      amount: amount,
+    });
 
     return { status: true, msg: `Withdraw completed successfully` };
     // } catch (err: any) {

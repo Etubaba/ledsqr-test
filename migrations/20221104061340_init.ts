@@ -19,11 +19,12 @@ export async function up(knex: Knex): Promise<void> {
       table.timestamps(true, true);
     })
 
-    .createTable('transactons', (table) => {
+    .createTable('transactions', (table) => {
       table.increments('id').primary();
-      table.string('sender_email').notNullable();
+      table.string('sender').notNullable();
       table.string('action').notNullable();
-      table.string('receiver_email').nullable();
+      table.integer('amount').notNullable();
+      table.string('receiver').nullable();
       table.timestamps(true, true);
     });
 }
@@ -32,5 +33,5 @@ export async function down(knex: Knex): Promise<void> {
   return knex.schema
     .dropTable('users')
     .dropTable('wallets')
-    .dropTable('transaction');
+    .dropTable('transactions');
 }
