@@ -279,7 +279,7 @@ export class WalletService {
     return { status: true, data: userWalletBalance };
   }
 
-  async getAllWallet() {
+  async getAllWallets() {
     const wallets = await this.knex('wallets').select('*');
     return { status: true, data: wallets };
   }
