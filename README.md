@@ -9,7 +9,7 @@ API to create user, authenticate user, fund wallet, transfer fund, withdraw fund
 
 Other stack include, MySQL,KnexJS ORM, Passport JS . 
 View the database structure with dbdesigner 
-<strong> How to reach me <a href="https://www.findprosper.com" >www.findprosper.com</a> </strong>
+<p>  <a href="https://dbdesigner.page.link/a5FZDoTMLMXwqSFT7" >here</a> </p>
 
 
 ## Install
