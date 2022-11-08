@@ -12,6 +12,11 @@ export class UsersService {
   async createUser(user: UserDto) {
     const { email, password } = user;
 
+    if (email === undefined || password === undefined)
+      throw new NotAcceptableException(
+        'Sorry!! Server cannot see what you are posting',
+      );
+
     //check if email already exisit
     const userExists = await this.knex('users').where({ email }).first();
 

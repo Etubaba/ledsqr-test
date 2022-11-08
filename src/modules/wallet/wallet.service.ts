@@ -7,10 +7,14 @@ import { Knex } from 'knex';
 import { InjectModel } from 'nest-knexjs';
 import { TransferFundDto } from './dto/transfer.dto';
 import { WalletDto } from './dto/wallet.dto';
+// import { InjectPaystackClient } from 'paystack-nestjs';
+// import { Paystack } from 'paystack-sdk';
 
 @Injectable()
 export class WalletService {
-  constructor(@InjectModel() private readonly knex: Knex) {}
+  constructor(
+    @InjectModel() private readonly knex: Knex, // @InjectPaystackClient() private readonly paystackClient: Paystack,
+  ) {}
 
   //service to fund wallet for user (task 2)
   async fundUserWallet(walletDto: WalletDto) {

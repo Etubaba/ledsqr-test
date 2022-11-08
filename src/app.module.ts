@@ -5,10 +5,11 @@ import { KnexModule } from 'nest-knexjs';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { WalletModule } from './modules/wallet/wallet.module';
+import { paymentModule } from './modules/payments/payments.module';
 import * as dotenv from 'dotenv';
 import { WalletService } from './modules/wallet/wallet.service';
 import { TransactionModule } from './modules/transaction/transaction.module';
-import { PaystackModule } from 'nestjs-paystack';
+// import { PaystackModule } from 'paystack-nestjs';
 
 dotenv.config();
 
@@ -27,13 +28,14 @@ dotenv.config();
         },
       },
     }),
-    PaystackModule.forRoot({
-      apiKey: process.env.PAYSTACK_SECRET,
-    }),
+    // PaystackModule.forRoot(PaystackModule, {
+    //   secretKey: process.env.PAYSTACK_SECRET,
+    // }),
     UsersModule,
     AuthModule,
     WalletModule,
     TransactionModule,
+    // paymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

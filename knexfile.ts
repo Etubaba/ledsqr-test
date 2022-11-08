@@ -17,16 +17,17 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password',
+      host: '6856',
+      database: 'railway',
+      user: 'root',
+      password: 'aKnxzB9qGnpJ6UJpqVwZ',
     },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: 'knex_migrations',
-    },
+    // pool: {
+    //   min: 2,
+    //   max: 10,
+    // },
+    // migrations: {
+    //   tableName: 'knex_migrations',
+    // },
   },
 };
