@@ -7,7 +7,8 @@
 This is a documentation for wallet system using nest js framework of node js to create  REST
 API to create user, authenticate user, fund wallet, transfer fund, withdraw funds and so much more.
 
-Other stack include, MySQL,KnexJS ORM, Passport JS . 
+Other stack include, MySQL,KnexJS ORM, Passport JS . <br/>
+
 View the database structure with dbdesigner <p><a href="https://dbdesigner.page.link/a5FZDoTMLMXwqSFT7">here</a></p>
 
 
