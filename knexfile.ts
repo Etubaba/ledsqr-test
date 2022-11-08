@@ -7,14 +7,14 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: '0.0.0.0',
-      // host: '127.0.0.1',
-      user: 'root',
-      // user: 'etubaba',
-      password: 'aKnxzB9qGnpJ6UJpqVwZ',
-      // password: 'mun2la@@',
-      database: 'railway',
-      // database: 'lendsqr',
+      // host: '0.0.0.0',
+      host: '127.0.0.1',
+      // user: 'root',
+      user: 'etubaba',
+      // password: 'aKnxzB9qGnpJ6UJpqVwZ',
+      password: 'mun2la@@',
+      // database: 'railway',
+      database: 'lendsqr',
     },
   },
 
@@ -22,7 +22,8 @@ module.exports = {
     client: 'mysql',
     connection: {
       // host: '6856',
-      host: '0.0.0.0',
+      host: 'containers-us-west-116.railway.app',
+      port: 6856,
       database: 'railway',
       user: 'root',
       password: 'aKnxzB9qGnpJ6UJpqVwZ',
