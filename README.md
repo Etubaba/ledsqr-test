@@ -41,7 +41,7 @@ The REST API to the this app is described below.
 
     HTTP/1.1 201 OK
     Date: Thu, 24 Feb 2011 12:36:30 GMT
-    Status: 200 OK
+    Status: 201 created
     Connection: close
     Content-Type: application/json
     Content-Length: 2
@@ -263,7 +263,7 @@ The REST API to the this app is described below.
 
 ### Request
 
-`PUT /nowhere/:id`
+`PUT /nowhere/`
 
     curl -i -H 'Accept: application/json'  http://localhost:3000/wrongURL
 
@@ -277,6 +277,31 @@ The REST API to the this app is described below.
     Content-Length: 41
 
     {"id":1,"name":"Foo","status":"changed2"}
+    
+    ## When url does not exist
+    
+  
+  ## When token is invalid or not available 
+
+### Request
+
+`GET /wallet/balance/{wallet number or user email}`
+
+    curl -i -H 'Accept: application/json'  http://localhost:3000//wallet/balance/{wallet number or user email}
+
+### Response
+
+    HTTP/1.1 401 unauthorized
+    Date: Thu, 24 Feb 2011 12:36:31 GMT
+    Status: 401 not found 
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 41
+
+  {
+  "statusCode": 401,
+  "message": "Unauthorized"
+}
 
 
 
