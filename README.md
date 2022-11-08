@@ -8,8 +8,8 @@ This is a documentation for wallet system using nest js framework of node js to 
 API to create user, authenticate user, fund wallet, transfer fund, withdraw funds and so much more.
 
 Other stack include, MySQL,KnexJS ORM, Passport JS . 
-View the database structure with dbdesigner 
-<p>  <a href="https://dbdesigner.page.link/a5FZDoTMLMXwqSFT7" >here</a> </p>
+View the database structure with dbdesigner <p><a href="https://dbdesigner.page.link/a5FZDoTMLMXwqSFT7">here</a></p>
+
 
 
 ## Install
