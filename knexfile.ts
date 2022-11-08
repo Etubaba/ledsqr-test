@@ -28,12 +28,12 @@ module.exports = {
       user: 'root',
       password: 'aKnxzB9qGnpJ6UJpqVwZ',
     },
-    // pool: {
-    //   min: 2,
-    //   max: 10,
-    // },
-    // migrations: {
-    //   tableName: 'knex_migrations',
-    // },
+    pool: {
+      min: 2,
+      max: 10,
+    },
+    migrations: {
+      tableName: 'knex_migrations',
+    },
   },
 };
