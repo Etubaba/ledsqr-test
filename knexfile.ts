@@ -4,6 +4,25 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
+  production: {
+    client: 'mysql',
+    connection: {
+      // host: '6856',
+      host: 'containers-us-west-100.railway.app',
+      port: 5591,
+      database: 'railway',
+      user: 'root',
+      password: 'ikPjB7bhCCuRg8zEtGTD',
+    },
+    // pool: {
+    //   min: 2,
+    //   max: 10,
+    // },
+    // migrations: {
+    //   tableName: 'knex_migrations',
+    // },
+  },
+
   development: {
     client: 'mysql',
     connection: {
@@ -15,25 +34,6 @@ module.exports = {
       password: 'mun2la@@',
       // database: 'railway',
       database: 'lendsqr',
-    },
-  },
-
-  production: {
-    client: 'mysql',
-    connection: {
-      // host: '6856',
-      host: 'containers-us-west-100.railway.app',
-      port: 5591,
-      database: 'railway',
-      user: 'root',
-      password: 'ikPjB7bhCCuRg8zEtGTD',
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: 'knex_migrations',
     },
   },
 };
