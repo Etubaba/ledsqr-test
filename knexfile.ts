@@ -5,7 +5,7 @@
  */
 module.exports = {
   production: {
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
       // host: '6856',
       host: 'containers-us-west-100.railway.app',
@@ -24,7 +24,7 @@ module.exports = {
   },
 
   development: {
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
       // host: '0.0.0.0',
       host: '127.0.0.1',

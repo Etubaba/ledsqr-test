@@ -17,7 +17,7 @@ dotenv.config();
   imports: [
     KnexModule.forRoot({
       config: {
-        client: 'mysql',
+        client: 'mysql2',
         // version: '5.7',
         useNullAsDefault: true,
         connection: {
