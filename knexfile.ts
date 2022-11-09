@@ -4,7 +4,7 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
-  production: {
+  development: {
     client: 'mysql',
     connection: {
       // host: '6856',
