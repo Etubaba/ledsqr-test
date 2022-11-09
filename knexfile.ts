@@ -23,17 +23,17 @@ module.exports = {
     // },
   },
 
-  development: {
-    client: 'mysql',
-    connection: {
-      // host: '0.0.0.0',
-      host: '127.0.0.1',
-      // user: 'root',
-      user: 'etubaba',
-      // password: 'aKnxzB9qGnpJ6UJpqVwZ',
-      password: 'mun2la@@',
-      // database: 'railway',
-      database: 'lendsqr',
-    },
-  },
+  // development: {
+  //   client: 'mysql',
+  //   connection: {
+  //     // host: '0.0.0.0',
+  //     host: '127.0.0.1',
+  //     // user: 'root',
+  //     user: 'etubaba',
+  //     // password: 'aKnxzB9qGnpJ6UJpqVwZ',
+  //     password: 'mun2la@@',
+  //     // database: 'railway',
+  //     database: 'lendsqr',
+  //   },
+  // },
 };
