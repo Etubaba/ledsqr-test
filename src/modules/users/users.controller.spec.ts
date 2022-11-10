@@ -10,7 +10,6 @@ describe('UsersController', () => {
     createUser: jest.fn((dto) => {
       return {
         id: Math.floor(1 + Math.random() * 10),
-
         ...dto,
       };
     }),
